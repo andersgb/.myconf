@@ -1,0 +1,54 @@
+[user]
+	email = anders.bjornstad@axbit.com
+	name = Anders Granskogen Bjørnstad
+[core]
+	editor = emacsclient -t
+	autocrlf = 
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	l = "! git lg | head"
+	bc = branch --contains
+	b = branch -v
+	fp = format-patch -k -M -N
+	s = status --short
+	hot = for-each-ref --format='%(refname:short)' --count 10 --sort='-committerdate' refs/heads\n
+
+[rebase]
+	autosquash = true
+[color]
+	diff = auto
+	status = auto
+	interactive = auto
+	branch = auto
+	ui = true
+[log]
+	decorate = short
+[grep]
+	linenumber = true
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.gmail.com
+	smtpuser = andersgb@gmail.com
+	smtpserverport = 587
+[rerere]
+	enabled = true
+[credential "https://source.developers.google.com"]
+	helper = gcloud.sh
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+# [diff "jupyternotebook"]
+# 	command = git-nbdiffdriver diff
+# [merge "jupyternotebook"]
+# 	driver = git-nbmergedriver merge %O %A %B %L %P
+# 	name = jupyter notebook merge driver
+# [difftool "nbdime"]
+# 	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+# [difftool]
+# 	prompt = false
+# [mergetool "nbdime"]
+# 	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+# [mergetool]
+# 	prompt = false
