@@ -20,4 +20,14 @@ And we can track files like
     config push
 ```
 
+## Checking out on a new machine
 
+A new checkout will fail when home directory is not empty, follow these steps instead:
+
+```
+    git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
+    rm -r ~/myconf-tmp/
+    alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+```
+
+Now `config status` or `config reset HEAD --hard` etc will work in home dir, but take care about preserving any existing files there first.
