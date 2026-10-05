@@ -12,6 +12,7 @@
 	fp = format-patch -k -M -N
 	s = status --short
 	hot = for-each-ref --format='%(refname:short)' --count 10 --sort='-committerdate' refs/heads\n
+	wt-merge = "!f() { branch=$1; [ -n \"$branch\" ] || { echo \"usage: git wt-merge <feature-branch>\" >&2; return 2; }; worktree=$(git worktree list --porcelain | while IFS= read -r line; do case \"$line\" in \"worktree \"*) path=${line#worktree } ;; \"branch refs/heads/$branch\") printf \"%s\\n\" \"$path\"; break ;; esac; done); [ -n \"$worktree\" ] || { echo \"No worktree found checking out branch: $branch\" >&2; return 1; }; git merge --no-ff \"$branch\" && git worktree remove \"$worktree\" && git branch -d \"$branch\"; }; f"
 
 [rebase]
 	autosquash = true
